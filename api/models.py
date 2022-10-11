@@ -8,7 +8,7 @@ class Seizure(models.Model):
     duration = models.DurationField()
     trigger = models
     descriptions_trigger = models.TextField()
-    type = models.ForeignKey(to, on_delete)
+    type = models.OneToOneField(to, on_delete)
     comment = models.TextField()
 
     class Meta:
@@ -20,6 +20,36 @@ class Seizure(models.Model):
 
 
 class TypeSeizure(models.Model):
+    """ """
+    name = models.CharField()
+    descriptions = models.TextField()
+
+    class Meta:
+        verbose_name = "Type Seizure"
+        verbose_name_plural = "Types Seizure"
+
+    def __str__(self):
+        return str(self.name)
+
+
+class Aura(models.Model):
+    """ """
+    when = models.TimeField()
+    duration = models.DurationField()
+    trigger = models
+    descriptions_trigger = models.TextField()
+    type = models.OneToOneField(to, on_delete)
+    comment = models.TextField()
+
+    class Meta:
+        verbose_name = "Seizure"
+        verbose_name_plural = "Seizure"
+
+    def __str__(self):
+        return str(self.duration)
+
+
+class TypeAura(models.Model):
     """ """
     name = models.CharField()
     descriptions = models.TextField()
