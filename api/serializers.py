@@ -1,5 +1,13 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
+from .models import (
+    TypeSeizure,
+    Seizure,
+    TypeAura,
+    Aura,
+    Content,
+    Contact
+)
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -18,34 +26,48 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class TypeSeizureSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = TypeSeizure
-        fields = []
+        fields = ['name', 'descriptions']
 
 
 class SeizureSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Seizure
-        fields = []
+        fields = [
+            'when',
+            'duration',
+            'trigger',
+            'descriptions_trigger',
+            'type',
+            'comment'
+        ]
 
 
 class TypeAuraSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = TypeAura
-        fields = []
+        fields = ['name', 'descriptions']
 
 
 class AuraSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Aura
-        fields = []
+        fields = [
+            'when',
+            'duration',
+            'trigger',
+            'descriptions_trigger',
+            'type',
+            'comment'
+        ]
 
 
 class ContentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Content
-        fields = []
+        fields = ['header', 'text', 'date', 'image']
 
 
 class ContactSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Contact
-        fields = []
+        fields = ['first_name', 'last_name', 'disable_contact', 'phone_namber']

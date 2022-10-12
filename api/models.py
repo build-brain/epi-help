@@ -1,27 +1,10 @@
 from django.db import models
-
-# Create your models here.
-
-class Seizure(models.Model):
-    """ """
-    when = models.TimeField()
-    duration = models.DurationField()
-    trigger = models
-    descriptions_trigger = models.TextField()
-    type = models.OneToOneField(to, on_delete)
-    comment = models.TextField()
-
-    class Meta:
-        verbose_name = "Seizure"
-        verbose_name_plural = "Seizure"
-
-    def __str__(self):
-        return str(self.duration)
+from datetime import date
 
 
 class TypeSeizure(models.Model):
     """ """
-    name = models.CharField()
+    name = models.CharField(max_length=150)
     descriptions = models.TextField()
 
     class Meta:
@@ -32,13 +15,17 @@ class TypeSeizure(models.Model):
         return str(self.name)
 
 
-class Aura(models.Model):
+class Seizure(models.Model):
     """ """
-    when = models.TimeField()
+    when = models.TimeField(default = date.today)
     duration = models.DurationField()
-    trigger = models
+    trigger = models.CharField(max_length=150)
     descriptions_trigger = models.TextField()
-    type = models.OneToOneField(to, on_delete)
+    type = models.OneToOneField(
+        TypeSeizure, 
+        on_delete = models.CASCADE,
+        primary_key=True
+    )
     comment = models.TextField()
 
     class Meta:
@@ -51,24 +38,44 @@ class Aura(models.Model):
 
 class TypeAura(models.Model):
     """ """
-    name = models.CharField()
+    name = models.CharField(max_length=150)
     descriptions = models.TextField()
 
     class Meta:
-        verbose_name = "Type Seizure"
-        verbose_name_plural = "Types Seizure"
+        verbose_name = "Type Aura"
+        verbose_name_plural = "Types Aura"
 
     def __str__(self):
         return str(self.name)
 
 
+class Aura(models.Model):
+    """ """
+    when = models.TimeField(default = date.today)
+    duration = models.DurationField()
+    trigger = models.CharField(max_length=150)
+    descriptions_trigger = models.TextField()
+    type = models.OneToOneField(
+        TypeAura,
+        on_delete = models.CASCADE,
+        primary_key=True
+    )
+    comment = models.TextField()
+
+    class Meta:
+        verbose_name = "Aura"
+        verbose_name_plural = "Aura"
+
+    def __str__(self):
+        return str(self.duration)
+
+
 class Content(models.Model):
     """ """
-    header = models.CharField()
+    header = models.CharField(max_length=150)
     text = models.TextField()
-    date = models.DateField()
-    image = models.ImageField()
-
+    date = models.DateField(default=date.today)
+    image = models.ImageField(upload_to="content_image/")
 
     class Meta:
         verbose_name = "Content"
@@ -80,11 +87,11 @@ class Content(models.Model):
 
 class Contact(models.Model):
     """ """
-    first_name = models.CharField()
-    last_name = models.CharField()
-    disable_contact = models.BooleanField()
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    disable_contact = models.BooleanField(default=False)
     email = models.EmailField()
-    phone_number = models.CharField()
+    phone_number = models.CharField(max_length=20)
 
 
     class Meta:
