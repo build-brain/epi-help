@@ -1,5 +1,18 @@
 from django.db import models
-from datetime import date
+from datetime import date, time
+
+
+class TypeTrigger(models.Model):
+    """ """
+    name = models.CharField(max_length=150)
+    selected = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = "Type Trigger"
+        verbose_name_plural = "Types Trigger"
+
+    def __str__(self):
+        return str(self.name)
 
 
 class TypeSeizure(models.Model):
@@ -17,7 +30,7 @@ class TypeSeizure(models.Model):
 
 class Seizure(models.Model):
     """ """
-    when = models.TimeField(default = date.today)
+    when = models.DateTimeField()
     duration = models.DurationField()
     trigger = models.CharField(max_length=150)
     descriptions_trigger = models.TextField()
@@ -51,11 +64,11 @@ class TypeAura(models.Model):
 
 class Aura(models.Model):
     """ """
-    when = models.TimeField(default = date.today)
+    when = models.DateTimeField()
     duration = models.DurationField()
     trigger = models.CharField(max_length=150)
     descriptions_trigger = models.TextField()
-    type = models.OneToOneField(
+    type = models.ForeignKey(
         TypeAura,
         on_delete = models.CASCADE,
         primary_key=True
@@ -65,6 +78,30 @@ class Aura(models.Model):
     class Meta:
         verbose_name = "Aura"
         verbose_name_plural = "Aura"
+
+    def __str__(self):
+        return str(self.duration)
+
+
+class ReportEvent(models.Model):
+    """ """
+    when = models.DateTimeField(auto_now_add = True)
+    duration = models.DurationField()
+    trigger = models.ForeignKey(
+        TypeTrigger,
+        on_delete = models.CASCADE,
+        primary_key=True
+    )
+    descriptions_trigger = models.TextField()
+    type = models.OneToOneField(
+        TypeSeizure, 
+        on_delete = models.CASCADE
+    )
+    comment = models.TextField()
+
+    class Meta:
+        verbose_name = "Report Event"
+        verbose_name_plural = "Report Events"
 
     def __str__(self):
         return str(self.duration)
@@ -101,3 +138,57 @@ class Contact(models.Model):
     def __str__(self):
         return str(f"{self.first_name} {self.last_name}" )
 
+
+
+
+
+
+# TODO ---------- Gen Settings -------------------
+
+class GeneralSettings(models.Model):
+    """ """
+    help_delay  = models.IntegerField()
+    phone_sensitivity = models.IntegerField()
+    watch_sensitivity = models.IntegerField()
+    above_beats = models.IntegerField()
+    bellow_beats = models.IntegerField()
+    audible_alarm = models.BooleanField(default=True)
+    repeat_alarm = models.IntegerField()
+    audible_message = models.BooleanField(default=True)
+    repeat_message = models.IntegerField()
+
+
+    class Meta:
+        verbose_name = "General Settings"
+        verbose_name_plural = "General Settings"
+
+    def __str__(self):
+        return str(f"{self.above_beats} -> {self.bellow_beats}" )
+
+# TODO ---------- My Profile -------------------
+
+class MyProfile(models.Model):
+    """ """
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone_number = models.CharField(max_length=20)
+    birthday = models.DateField()
+    weight = models.IntegerField()
+    blood_type = models.IntegerField()
+    allergy = models.CharField(max_length=200)
+    congenital_diseases = models.CharField(max_length=200)
+    acquired_diseases = models.CharField(max_length=200)
+    triggers = models.ForeignKey(
+        TypeTrigger,
+        verbose_name= "Triggers that precede seizures",
+        on_delete = models.CASCADE,
+        primary_key=True
+    )
+    
+    class Meta:
+        verbose_name = "My Profile"
+        verbose_name_plural = "My Profiles"
+
+    def __str__(self):
+        return str(f"{self.first_name} {self.last_name}" )

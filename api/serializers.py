@@ -1,26 +1,5 @@
-from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import (
-    TypeSeizure,
-    Seizure,
-    TypeAura,
-    Aura,
-    Content,
-    Contact
-)
-
-
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = ['url', 'username', 'email', 'groups']
-
-
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Group
-        fields = ['url', 'name']
-
+from .models import *
 
 # --------------------------------------------------------------
 class TypeSeizureSerializer(serializers.HyperlinkedModelSerializer):
@@ -64,10 +43,54 @@ class AuraSerializer(serializers.HyperlinkedModelSerializer):
 class ContentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Content
-        fields = ['header', 'text', 'date', 'image']
+        fields = [
+            'header', 
+            'text', 
+            'date', 
+            'image'
+        ]
 
 
 class ContactSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Contact
-        fields = ['first_name', 'last_name', 'disable_contact', 'phone_namber']
+        fields = [
+            'first_name', 
+            'last_name', 
+            'disable_contact', 
+            'phone_namber'
+        ]
+    
+
+class GeneralSettingsSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Contact
+        fields = [
+            'help_delay'  ,
+            'phone_sensitivity' ,
+            'watch_sensitivity' ,
+            'above_beats' ,
+            'bellow_beats' ,
+            'audible_alarm' ,
+            'repeat_alarm' ,
+            'audible_message' ,
+            'repeat_message' ,
+        ]
+
+
+class MyProfileSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Contact
+        fields = [
+            'first_name', 
+            'last_name', 
+            'disable_contact', 
+            'phone_namber',
+            'birthday' ,
+            'weight' ,
+            'blood_type' ,
+            'allergy' ,
+            'congenital_diseases' ,
+            'acquired_diseases' ,
+            'triggers',
+        ]
