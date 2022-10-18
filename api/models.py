@@ -161,7 +161,7 @@ class Contact(models.Model):
     disable_contact = models.BooleanField(default=False)
     email           = models.EmailField()
     phone_number    = models.CharField(max_length=20)
-    alert_methods   = models.ForeignKey(to, on_delete)
+    # alert_methods   = models.ForeignKey(to, on_delete)
 
 
     class Meta:
