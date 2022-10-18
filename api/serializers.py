@@ -12,7 +12,7 @@ class SeizureSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Seizure
         fields = [
-            'when',
+            # 'when',
             'duration',
             'trigger',
             'descriptions_trigger',
@@ -31,7 +31,7 @@ class AuraSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Aura
         fields = [
-            'when',
+            # 'when',
             'duration',
             'trigger',
             'descriptions_trigger',
