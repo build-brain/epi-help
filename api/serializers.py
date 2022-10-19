@@ -58,7 +58,7 @@ class ContactSerializer(serializers.HyperlinkedModelSerializer):
             'first_name', 
             'last_name', 
             'disable_contact', 
-            'phone_namber'
+            'phone_number'
         ]
     
 
