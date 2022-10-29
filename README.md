@@ -6,37 +6,84 @@
 
 Singup | Login
 --------------
-* POST: https://127.0.0.1:8000/account/register - Registration
-* POST: https://127.0.0.1:8000/account/login - Login
-* POST: https://127.0.0.1:8000/account/login/refresh - Token refresh
+* POST: http://127.0.0.1:8000/account/register/ - Registration
+* POST: http://127.0.0.1:8000/account/login/ - Login
+* POST: http://127.0.0.1:8000/account/login/refresh/ - Token refresh
 
 --------------------------------------------------------------------
 
 Content
 -------
-* GET: https://127.0.0.1:8000/api/content - Content list
+* GET: http://127.0.0.1:8000/api/content/ - Content list
+* GET: http://127.0.0.1:8000/api/content/<id> - Content
 
 --------------------------------------------------------
 
 Contact
 -------
-* POST: https://127.0.0.1:8000/api/contact - Add contact
-* GET: https://127.0.0.1:8000/api/contact - Contact list
-* PUT: https://127.0.0.1:8000/api/contact/<id> - Update contact
-* DELETE: https://127.0.0.1:8000/api/contact/<id> - Delete contact
+* POST: http://127.0.0.1:8000/api/contact/ - Add contact
+* GET: http://127.0.0.1:8000/api/contact/ - Contact list
+* PUT: http://127.0.0.1:8000/api/contact/<id> - Update contact
+* DELETE: http://127.0.0.1:8000/api/contact/<id> - Delete contact
 
 ------------------------------------------------------------------
 
 Type Trigger
------------
-* POST: https://127.0.0.1:8000/api/typetrigger - Add type trigger
-* GET: https://127.0.0.1:8000/api/typetrigger - Type trigger list
+------------
+* POST: http://127.0.0.1:8000/api/type-trigger/ - Add type trigger
+* GET: http://127.0.0.1:8000/api/type-trigger/ - Type trigger list
+* GET: http://127.0.0.1:8000/api/type-trigger/<id> - Type trigger by index
 
 -----------------------------------------------------------------
 
 Type Seizure
------------
-* POST: https://127.0.0.1:8000/api/typeseizure - Add type seizure
-* GET: https://127.0.0.1:8000/api/typeseizure - Type seizure list
+------------
+* POST: http://127.0.0.1:8000/api/type-seizure/ - Add type seizure
+* GET: http://127.0.0.1:8000/api/type-seizure/ - Type seizure list
+* GET: http://127.0.0.1:8000/api/type-seizure/<id> - Type seizure by index
 
 -----------------------------------------------------------------
+
+Type Aura
+---------
+* POST: http://127.0.0.1:8000/api/type-aura/ - Add type aura
+* GET: http://127.0.0.1:8000/api/type-aura/ - Type aura list
+* GET: http://127.0.0.1:8000/api/type-aura/<id> - Type aura by index
+
+--------------------------------------------------------------------
+
+Report Event
+------------
+* POST: http://127.0.0.1:8000/api/report-event/ - Add Report event
+* GET: http://127.0.0.1:8000/api/report-event/ - Report event list
+* GET: http://127.0.0.1:8000/api/report-event/<id> - Report event by index
+
+-----------------------------------------------------------------
+
+Seizure
+------------
+* POST: http://127.0.0.1:8000/api/seizure/ - Add seizure
+* GET: http://127.0.0.1:8000/api/seizure/ - Seizure list
+* GET: http://127.0.0.1:8000/api/seizure/<id> - Seizure by index
+
+-----------------------------------------------------------------
+
+Aura
+---------
+* POST: http://127.0.0.1:8000/api/aura/ - Add aura
+* GET: http://127.0.0.1:8000/api/aura/ - Aura list
+* GET: http://127.0.0.1:8000/api/aura/<id> - Aura by index
+
+--------------------------------------------------------------------
+
+General Settings
+----------------
+* PUT: http://127.0.0.1:8000/api/general-settings/ - Update settings
+
+--------------------------------------------------------------------
+
+My Profile
+----------------
+* PUT: http://127.0.0.1:8000/api/my-profile/ - Update profile
+
+--------------------------------------------------------------------
