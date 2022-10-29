@@ -6,6 +6,8 @@ urlpatterns = [
     
     path('type-trigger/', TypeTriggerView.as_view()),
     path('type-trigger/<int:pk>',TypeTriggerView.as_view()),
+    path('report-event/',ReportEventView.as_view()),
+    path('report-event/<int:pk>',ReportEventView.as_view()),
 
     path('type-seizure/', TypeSeizureView.as_view()),
     path('type-seizure/<int:pk>', TypeSeizureView.as_view()),
