@@ -8,7 +8,7 @@ Design for Mobile app
 --------------------------------------------------------------------
 
 
-## Documentation for EPI-HELP!
+# Documentation for EPI-HELP!
 
 Singup | Login
 --------------
