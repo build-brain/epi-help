@@ -1,31 +1,52 @@
 from rest_framework import serializers
 from .models import *
 
-# --------------------------------------------------------------
+
+
+# TODO -------------- Type Trigger -----------------
+
+class TypeTriggerSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = TypeTrigger
+        fields = '__all__'
+
+
+
+# TODO -------------- Type Seizure -----------------
+
 class TypeSeizureSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = TypeSeizure
         fields = ['name', 'descriptions']
+    
 
 
-class SeizureSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Seizure
-        fields = [
-            # 'when',
-            'duration',
-            'trigger',
-            'descriptions_trigger',
-            'type',
-            'comment'
-        ]
-
+# TODO -------------- Type Aura --------------------
 
 class TypeAuraSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = TypeAura
         fields = ['name', 'descriptions']
 
+ 
+ 
+# TODO -------------- Seizure ----------------------
+
+class SeizureSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Seizure
+        fields = [
+            'when',
+            'duration',
+            'trigger',
+            'descriptions_trigger',
+            'type',
+            'comment'
+        ]
+ 
+
+
+# TODO -------------- Aura -------------------------
 
 class AuraSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -40,6 +61,18 @@ class AuraSerializer(serializers.HyperlinkedModelSerializer):
         ]
 
 
+
+# TODO -------------- Report Event -----------------
+
+class ReportEventSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = ReportEvent
+        fields = '__all__'
+
+
+
+# TODO -------------- Content ----------------------
+
 class ContentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Content
@@ -49,18 +82,26 @@ class ContentSerializer(serializers.HyperlinkedModelSerializer):
             'date', 
             'image'
         ]
+    
 
+
+# TODO -------------- Contact ----------------------
 
 class ContactSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Contact
         fields = [
-            'first_name', 
-            'last_name', 
-            'disable_contact', 
+            'id',
+            'first_name',
+            'last_name',
+            'disable_contact',
+            'email',
             'phone_number'
         ]
-    
+
+
+
+# TODO -------------- General Settings -------------
 
 class GeneralSettingsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -77,6 +118,9 @@ class GeneralSettingsSerializer(serializers.HyperlinkedModelSerializer):
             'repeat_message' ,
         ]
 
+
+
+# TODO -------------- My Profile -------------------
 
 class MyProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

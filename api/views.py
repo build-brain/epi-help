@@ -1,174 +1,98 @@
 from .serializers import *
 from .models import *
-from rest_framework import mixins
-from rest_framework import generics
+from rest_framework.generics import *
 from rest_framework.permissions import IsAuthenticated
 
-
-# class DiaryView
-
-class ContactView(
-        generics.ListAPIView,
-        generics.CreateAPIView,
-        generics.DestroyAPIView
-    ):
-    # permission_classes =[IsAuthenticated]
-    queryset = Contact.objects.all()
-    serializer_class = ContactSerializer
-    lookup_field = 'pk'
-
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-
-    def delete(self, request, *args, **kwargs):
-        queryset = self.get_object(lookup_field)
-        return self.destroy(request, *args, **kwargs)
-
-
-# class ContactCreateView(generics.CreateAPIView):
-#     # permission_classes =[IsAuthenticated]
-#     # queryset = Contact.objects.create()
-#     serializer_class = ContactSerializer
-#     def post(self, request, *args, **kwargs):
-#         return self.create(request, *args, **kwargs)
-
-
-
-class ContentView(generics.ListAPIView):
-    # permission_classes =[IsAuthenticated]
-    queryset = Content.objects.all()
-    serializer_class = ContentSerializer
-
-    
 
 
 # TODO -------------- Type Trigger -----------------
 
-class TypeTriggerView():
+class TypeTriggerView(ListCreateAPIView, RetrieveAPIView):
+    # permission_classes =[IsAuthenticated]
+    queryset = TypeTrigger.objects.all()
     serializer_class = TypeTriggerSerializer
 
-    """
-    def get(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-    """
 
 
 # TODO -------------- Type Seizure -----------------
 
-class TypeSeizureView():
+class TypeSeizureView(ListCreateAPIView, RetrieveAPIView):
+    # permission_classes =[IsAuthenticated]
+    queryset = TypeSeizure.objects.all()
     serializer_class = TypeSeizureSerializer
-
-    """
-    def get(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-        
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-    """
+    
 
 
 # TODO -------------- Type Aura --------------------
 
-class TypeAuraView():
+class TypeAuraView(ListCreateAPIView, RetrieveAPIView):
+    # permission_classes =[IsAuthenticated]
+    queryset = TypeAura.objects.all()
     serializer_class = TypeAuraSerializer
 
-    """
-    def get(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-        
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-    """
-
-
+ 
+ 
 # TODO -------------- Seizure ----------------------
 
-class SeizureView():
+class SeizureView(ListCreateAPIView):
+    # permission_classes =[IsAuthenticated]
+    queryset = Seizure.objects.all()
     serializer_class = SeizureSerializer
-
-    """
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-    """
+ 
 
 
 # TODO -------------- Aura -------------------------
 
-class AuraView():
+class AuraView(ListCreateAPIView):
+    # permission_classes =[IsAuthenticated]
+    queryset = Aura.objects.all()
     serializer_class = AuraSerializer
 
-    """
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-    """
+
 
 # TODO -------------- Report Event -----------------
 
-class ReportEventView():
+class ReportEventView(CreateAPIView):
+    # permission_classes =[IsAuthenticated]
+    queryset = ReportEvent.objects.all()
     serializer_class = ReportEventSerializer
 
-    """
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-    """
+
 
 # TODO -------------- Content ----------------------
 
-class ContentView():
+class ContentView(ListAPIView, RetrieveAPIView):
+    # permission_classes =[IsAuthenticated]
+    queryset = Content.objects.all().order_by('date').reverse()
     serializer_class = ContentSerializer
-
-    """
-    def get(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-    """
+    
 
 
 # TODO -------------- Contact ----------------------
 
-class ContactView():
+class ContactView(ListCreateAPIView, RetrieveUpdateDestroyAPIView):
+    # permission_classes =[IsAuthenticated]
+    queryset = Contact.objects.all()
     serializer_class = ContactSerializer
 
-    """
-    def get(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-        
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-    """
 
 
 # TODO -------------- General Settings -------------
 
-class GeneralSettingsView():
+class GeneralSettingsView(UpdateAPIView):
+    # permission_classes =[IsAuthenticated]
+    queryset = GeneralSettings.objects.all()
     serializer_class = GeneralSettingsSerializer
 
-    """
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
 
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-
-    def patch(self, request, *args, **kwargs):
-        return self.partial_update(request, *args, **kwargs)
-    """
 
 # TODO -------------- My Profile -------------------
 
-class MyProfileView():
+class MyProfileView(UpdateAPIView):
+    # permission_classes =[IsAuthenticated]
+    queryset = MyProfile.objects.all()
     serializer_class = MyProfileSerializer
 
-    """
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
 
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
 
-    def patch(self, request, *args, **kwargs):
-        return self.partial_update(request, *args, **kwargs)
-    """
 

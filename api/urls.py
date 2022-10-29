@@ -1,15 +1,35 @@
 from django.urls import path
 from api.views import *
-from rest_framework.routers import DefaultRouter
-
+from rest_framework.routers  import SimpleRouter
 
 urlpatterns = [
-    path('content/', ContentView.as_view(), name='content'),
-    path('contact/', ContactView.as_view(), name='contact'),
-    path('contact/<int:pk>', ContactView.as_view(), name='contact')
+    
+    path('type-trigger/', TypeTriggerView.as_view()),
+    path('type-trigger/<int:pk>',TypeTriggerView.as_view()),
+
+    path('type-seizure/', TypeSeizureView.as_view()),
+    path('type-seizure/<int:pk>', TypeSeizureView.as_view()),
+    path('seizure/',SeizureView.as_view()),
+    path('seizure/<int:pk>',SeizureView.as_view()),
+
+    path('type-aura/', TypeAuraView.as_view()),
+    path('type-aura/<int:pk>', TypeAuraView.as_view()),
+    path('aura/',AuraView.as_view()),
+    path('aura/<int:pk>',AuraView.as_view()),
+
+    path('content/', ContentView.as_view()),
+    path('content/<int:pk>', ContentView.as_view()),
+
+    path('contact/', ContactView.as_view()),
+    path('contact/<int:pk>', ContactView.as_view()),
+
+    path('general-settings/', GeneralSettingsView.as_view()),
+    path('my-profile/', MyProfileView.as_view()),
+
 ]
 
-# router = DefaultRouter()
-# router.register(r'content', ContentView),
-# router.register(r'contact', ContactView),
-# urlpatterns = router.urls
+# router = SimpleRouter()
+# router.register('content/', ContentView),
+# router.register('contact/', ContactView),
+# router.register('contact/{pk}', ContactView),
+# urlpatterns += router.urls
